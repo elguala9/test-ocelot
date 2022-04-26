@@ -1,5 +1,6 @@
 import Web3 from "web3";
-const fs = require('fs');
+//import fs from 'fs';
+import * as fs from 'fs';
 import { Contract } from 'web3-eth-contract';
 
 export class Ocelot{
@@ -15,9 +16,9 @@ export class Ocelot{
         this.web3 = new Web3(provider);
         //this.web3.eth.defaultAccount = account;
         this.account = account;
-        let content = fs.readFileSync(this.config_path);
+        let content : string = fs.readFileSync(this.config_path).toString();
         this.CONFIG = JSON.parse(content);
-        content = fs.readFileSync(this.abi_path);
+        content = fs.readFileSync(this.abi_path).toString();
         let abi = JSON.parse(content);
 
         this.smart_contract = new this.web3.eth.Contract(abi,this.CONFIG.CONTRACT_ADDRESS);

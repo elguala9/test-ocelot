@@ -1,5 +1,5 @@
 node_modules/
 #Ocelot.*
 
-abi.json
-config.json
+#abi.json
+#config.json

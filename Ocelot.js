@@ -38,7 +38,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.Ocelot = void 0;
 var web3_1 = require("web3");
-var fs = require('fs');
+//import fs from 'fs';
+var fs = require("fs");
 var Ocelot = /** @class */ (function () {
     function Ocelot(provider, account) {
         this.config_path = "./config.json";
@@ -46,9 +47,9 @@ var Ocelot = /** @class */ (function () {
         this.web3 = new web3_1["default"](provider);
         //this.web3.eth.defaultAccount = account;
         this.account = account;
-        var content = fs.readFileSync(this.config_path);
+        var content = fs.readFileSync(this.config_path).toString();
         this.CONFIG = JSON.parse(content);
-        content = fs.readFileSync(this.abi_path);
+        content = fs.readFileSync(this.abi_path).toString();
         var abi = JSON.parse(content);
         this.smart_contract = new this.web3.eth.Contract(abi, this.CONFIG.CONTRACT_ADDRESS);
         //this.smart_contract.defaultAccount = account;
