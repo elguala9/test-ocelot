@@ -1,7 +1,6 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 exports.__esModule = true;
-var config_json_1 = __importDefault(require("./config.json")); // This import style requires "esModuleInterop", see "side notes"
-console.log(config_json_1["default"]);
+var Ocelot_1 = require("./Ocelot");
+//console.log(conf);
+var ocelot = new Ocelot_1.Ocelot("https://eth-rinkeby.alchemyapi.io/v2/og20Yy_ySrS03XIymDLWrukzBoZx7j2M", "0x4F5D845f7e6326fF4d97Db8913e37c4eE4b56b23");
+ocelot.getPrice().then(console.log);

@@ -1,9 +1,10 @@
 import Web3 from "web3";
-//import fs from 'fs';
-import * as fs from 'fs';
+import fs from 'fs';
+//import * as fs from 'fs';
 import { Contract } from 'web3-eth-contract';
 import CONFIG from './config.json'; 
 import ABI from './abi.json'; 
+import { AbiItem } from 'web3-utils'
 
 export class Ocelot{
     private config_path = "./config.json"
@@ -18,11 +19,7 @@ export class Ocelot{
         this.web3 = new Web3(provider);
         //this.web3.eth.defaultAccount = account;
         this.account = account;
-
-        let content = new String(ABI).toString();
-        let abi = JSON.parse(content);
-
-        this.smart_contract = new this.web3.eth.Contract(abi,CONFIG.CONTRACT_ADDRESS);
+        this.smart_contract = new this.web3.eth.Contract(ABI as AbiItem[],CONFIG.CONTRACT_ADDRESS);
         //this.smart_contract.defaultAccount = account;
         //console.log(this.smart_contract);
     }

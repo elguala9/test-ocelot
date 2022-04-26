@@ -50,9 +50,7 @@ var Ocelot = /** @class */ (function () {
         this.web3 = new web3_1["default"](provider);
         //this.web3.eth.defaultAccount = account;
         this.account = account;
-        var content = new String(abi_json_1["default"]).toString();
-        var abi = JSON.parse(content);
-        this.smart_contract = new this.web3.eth.Contract(abi, config_json_1["default"].CONTRACT_ADDRESS);
+        this.smart_contract = new this.web3.eth.Contract(abi_json_1["default"], config_json_1["default"].CONTRACT_ADDRESS);
         //this.smart_contract.defaultAccount = account;
         //console.log(this.smart_contract);
     }
