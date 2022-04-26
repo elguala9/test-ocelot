@@ -1,2 +1,4 @@
 node_modules/
 Ocelot.ts
+abi.json
+config.json
