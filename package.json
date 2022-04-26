@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/elguala9/test-ocelot/issues"
   },
-  "homepage": "https://github.com/elguala9/test-ocelot#readme"
+  "homepage": "https://github.com/elguala9/test-ocelot#readme",
+  "dependencies": {
+    "web3": "^1.7.3"
+  }
 }
