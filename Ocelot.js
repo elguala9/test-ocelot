@@ -35,11 +35,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 exports.__esModule = true;
 exports.Ocelot = void 0;
-var web3_1 = require("web3");
-//import fs from 'fs';
-var fs = require("fs");
+var web3_1 = __importDefault(require("web3"));
+var config_json_1 = __importDefault(require("./config.json"));
+var abi_json_1 = __importDefault(require("./abi.json"));
 var Ocelot = /** @class */ (function () {
     function Ocelot(provider, account) {
         this.config_path = "./config.json";
@@ -47,11 +50,9 @@ var Ocelot = /** @class */ (function () {
         this.web3 = new web3_1["default"](provider);
         //this.web3.eth.defaultAccount = account;
         this.account = account;
-        var content = fs.readFileSync(this.config_path).toString();
-        this.CONFIG = JSON.parse(content);
-        content = fs.readFileSync(this.abi_path).toString();
+        var content = new String(abi_json_1["default"]).toString();
         var abi = JSON.parse(content);
-        this.smart_contract = new this.web3.eth.Contract(abi, this.CONFIG.CONTRACT_ADDRESS);
+        this.smart_contract = new this.web3.eth.Contract(abi, config_json_1["default"].CONTRACT_ADDRESS);
         //this.smart_contract.defaultAccount = account;
         //console.log(this.smart_contract);
     }
@@ -104,8 +105,8 @@ var Ocelot = /** @class */ (function () {
                     case 1:
                         price = _a.sent();
                         return [2 /*return*/, {
-                                gasLimit: String(this.CONFIG.GAS_LIMIT),
-                                to: this.CONFIG.CONTRACT_ADDRESS,
+                                gasLimit: String(config_json_1["default"].GAS_LIMIT),
+                                to: config_json_1["default"].CONTRACT_ADDRESS,
                                 from: this.account,
                                 value: price
                             }];
@@ -139,8 +140,8 @@ var Ocelot = /** @class */ (function () {
     //configuration of the transction that is used when we start a non-payable transaction
     Ocelot.prototype.transactionConfig = function () {
         return {
-            gasLimit: String(this.CONFIG.GAS_LIMIT),
-            to: this.CONFIG.CONTRACT_ADDRESS
+            gasLimit: String(config_json_1["default"].GAS_LIMIT),
+            to: config_json_1["default"].CONTRACT_ADDRESS
         };
     };
     return Ocelot;

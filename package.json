@@ -1,6 +1,6 @@
 {
   "name": "test-ocelot",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Only a test",
   "main": "Ocelot.js",
   "scripts": {
