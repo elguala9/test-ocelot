@@ -1,4 +1,3 @@
+import conf from './config.json'; // This import style requires "esModuleInterop", see "side notes"
 
-export class Ocelot{
-    public test: string;
-}
+console.log(conf);

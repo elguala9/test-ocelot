@@ -2,26 +2,27 @@ import Web3 from "web3";
 //import fs from 'fs';
 import * as fs from 'fs';
 import { Contract } from 'web3-eth-contract';
+import CONFIG from './config.json'; 
+import ABI from './abi.json'; 
 
 export class Ocelot{
     private config_path = "./config.json"
     private abi_path = "./abi.json"
-    private CONFIG;
     private web3 : Web3;
     private smart_contract : Contract;
     private account : string;
 
     constructor(provider : any, account : string){
+      
         
         this.web3 = new Web3(provider);
         //this.web3.eth.defaultAccount = account;
         this.account = account;
-        let content : string = fs.readFileSync(this.config_path).toString();
-        this.CONFIG = JSON.parse(content);
-        content = fs.readFileSync(this.abi_path).toString();
+
+        let content = new String(ABI).toString();
         let abi = JSON.parse(content);
 
-        this.smart_contract = new this.web3.eth.Contract(abi,this.CONFIG.CONTRACT_ADDRESS);
+        this.smart_contract = new this.web3.eth.Contract(abi,CONFIG.CONTRACT_ADDRESS);
         //this.smart_contract.defaultAccount = account;
         //console.log(this.smart_contract);
     }
@@ -85,8 +86,8 @@ export class Ocelot{
       let price = await this.getPrice().then();
       
       return {
-        gasLimit: String(this.CONFIG.GAS_LIMIT),
-        to: this.CONFIG.CONTRACT_ADDRESS,
+        gasLimit: String(CONFIG.GAS_LIMIT),
+        to: CONFIG.CONTRACT_ADDRESS,
         from : this.account,
         value: price
       };
@@ -111,8 +112,8 @@ export class Ocelot{
     //configuration of the transction that is used when we start a non-payable transaction
     private transactionConfig() : any{
       return {
-        gasLimit: String(this.CONFIG.GAS_LIMIT),
-        to: this.CONFIG.CONTRACT_ADDRESS
+        gasLimit: String(CONFIG.GAS_LIMIT),
+        to: CONFIG.CONTRACT_ADDRESS
       };
     }
 
