@@ -1,6 +1,6 @@
 {
   "name": "test-ocelot",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Only a test",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "url": "https://github.com/elguala9/test-ocelot/issues"
   },
   "homepage": "https://github.com/elguala9/test-ocelot#readme",
-  "dependencies": {
-    
+  "devDependencies": {
+    "web3": "^1.7.3"
   }
 }
